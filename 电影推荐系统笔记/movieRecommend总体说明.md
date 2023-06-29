@@ -4,6 +4,16 @@
 /opt/module/spark-standalone/bin/spark-submit  --master spark://hadoop201:7077 --class com.linrushao.offline.OfflineRecommender  --packages org.mongodb.spark:mongo-spark-connector_2.12:2.4.1  --jars /opt/module/spark-standalone/jars/jblas-1.2.4-SNAPSHOT.jar,/opt/module/spark-standalone/jars/casbah-core_2.12-3.1.1.jar,/opt/module/spark-standalone/jars/mongo-java-driver-3.12.10.jar,/opt/module/spark-standalone/jars/mongo-hadoop-core-2.0.0.jar,/opt/module/spark-standalone/jars/casbah-commons_2.12-3.1.1.jar,/opt/module/spark-standalone/jars/casbah-query_2.12-3.1.1.jar  /opt/module/spark-standalone/test/OfflineRecommender-1.0-SNAPSHOT.jar 
 ```
 
+master
+
+```shell
+/usr/local/app/spark/bin/spark-submit  --master spark://master:7077 --class com.linrushao.offline.OfflineRecommender  --packages org.mongodb.spark:mongo-spark-connector_2.12:2.4.1  --jars /usr/local/app/spark/jars/jblas-1.2.4-SNAPSHOT.jar,/usr/local/app/spark/jars/casbah-core_2.12-3.1.1.jar,/usr/local/app/spark/jars/mongo-java-driver-3.12.10.jar,/usr/local/app/spark/jars/mongo-hadoop-core-2.0.0.jar,/usr/local/app/spark/jars/casbah-commons_2.12-3.1.1.jar,/usr/local/app/spark/jars/casbah-query_2.12-3.1.1.jar  /usr/local/app/spark/test/OfflineRecommender-1.0-SNAPSHOT.jar 
+```
+
+
+
+
+
 ## 工程简介
 
 基于实时和离线的电影推荐系统
@@ -38,6 +48,8 @@
 
 ```shell
 redis-server /opt/module/redis/redis.conf
+#master
+/usr/local/app/redis-5.0.7/bin/redis-server /usr/local/app/redis-5.0.7/redis.conf
 ```
 
 --->zookeeper（集群,脚本启动）【虚拟机】
@@ -58,6 +70,8 @@ kafka.sh start
 #头部加nohup 尾部加&  后台运行
 # 直接加 & 就可以了，但是加上nohup可以把原本在console输出的运行日志输出在nohup.out中
 nohup /opt/module/flume-1.9.0/bin/flume-ng agent --name a1 --conf-file /opt/module/flume-1.9.0/conf/movielog.conf -Dflume.root.logger=INFO,console &
+#master
+nohup /usr/local/app/flume-1.9.0/bin/flume-ng agent --name a1 --conf-file /usr/local/app/flume-1.9.0/conf/movielog.conf -Dflume.root.logger=INFO,console &
 ```
 
 --->SpringBoot（前端页面）【Windows】
@@ -81,6 +95,14 @@ recommend -> StreamingRecommender
 
 
 
+
+
+
+
+
+
+
+搜索框改为电影标题模糊查询
 
 ### 1 spark
 

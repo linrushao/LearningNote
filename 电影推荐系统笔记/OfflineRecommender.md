@@ -542,7 +542,16 @@ object OfflineRecommender extends App {
 /opt/module/spark-standalone/test/OfflineRecommender-1.0-SNAPSHOT.jar
 ```
 
+==注意：==因为利用spark运行任务的时候会产生大量的日志文件，可能导致磁盘不够用，所以禁用日志存储到HDFS中即可，修改配置文件spark-defaults.conf：【原本开启的】
 
+```shell
+#spark.eventLog.enabled            true
+#spark.eventLog.dir                hdfs://hadoop201:8020/directory
+```
+
+![image-20230403203103950](OfflineRecommender.assets/image-20230403203103950.png)
+
+禁用之后就不需要启动Hadoop集群，只需要启动zookeeper和spark即可
 
 需要mongodb 的 scala 驱动 -> casbah,还需要加入三个jar包，关于mongodb的连接
 
